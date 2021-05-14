@@ -1,0 +1,12 @@
+{
+  "name": "test-drive",
+  "displayName": "test-drive",
+  "expo": {
+    "name": "test-drive",
+    "slug": "test-drive",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
