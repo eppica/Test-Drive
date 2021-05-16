@@ -5,7 +5,7 @@ Test Drive is a mobile app developed to a Innovation and New Technologies class 
 ## Features
 - Multiplatform
 - Questions of all manners
-- Notifications to practice
+- Reminding notifications
 - Statistics
 
 ## Technologies
