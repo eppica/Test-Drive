@@ -1,6 +1,6 @@
 # :oncoming_automobile: Test Drive
 
-Test Drive is a mobile app developed to a Innovation and New Technologies class in order to apply and improve our knowledge in developing mobile apps. The app aims to help students taking a drivers license to pratice for the theoretical test.
+Test Drive is a mobile app developed to a Innovation and New Technologies class in order to apply and improve our knowledge in developing mobile apps. The app aims to help students taking a drivers license to practice for the theoretical test.
 
 ## Features
 - Multiplatform
