@@ -13,7 +13,7 @@ Test Drive is a mobile app developed to a Innovation and New Technologies class 
 - [MongoDB](https://www.mongodb.com/1)
 
 ## Documentation
-The main goal and functionalities of this project are described at [Wiki](https://github.com/eppica/Test-Drive/wiki).
+The main goal and functionalities of this project are described on the [Wiki](https://github.com/eppica/Test-Drive/wiki).
 
 ## Releases
 
