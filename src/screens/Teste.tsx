@@ -1,10 +1,11 @@
 import React from 'react';
 import { Text, View } from 'react-native';
+import { TesteProps } from '../typing/navigationTypes';
 
-export default function Teste() {
+export default function Teste({ route }: TesteProps) {
   return (
     <View>
-      <Text>Tela Teste</Text>
+      <Text>{route.params.name}</Text>
     </View>
   );
 }
