@@ -8,6 +8,13 @@ export type RootStackParamList = {
   Questao: undefined;
 };
 
+export type RootDrawerParamList = {
+  Conteudo: undefined;
+  Estatisticas: undefined;
+  Configuracoes: undefined;
+  Sobre: undefined;
+};
+
 type ConteudoScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Conteudo'>;
 
 export type ConteudoProps = {

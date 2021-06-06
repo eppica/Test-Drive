@@ -1,15 +1,4 @@
-import { createDrawerNavigator } from 'react-navigation-drawer';
-import { createAppContainer } from 'react-navigation';
-import ConteudoStack from './conteudoStack';
-import SobreStack from './sobreStack';
+import { RootDrawerParamList } from '../typing/navigationTypes';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
-const RootDrawerNavigator = createDrawerNavigator({
-  Conteudo: {
-    screen: ConteudoStack,
-  },
-  Sobre: {
-    screen: SobreStack,
-  },
-});
-
-export default createAppContainer(RootDrawerNavigator);
+export const Drawer = createDrawerNavigator<RootDrawerParamList>();
