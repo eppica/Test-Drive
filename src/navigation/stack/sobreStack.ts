@@ -1,5 +1,5 @@
 import { createStackNavigator } from 'react-navigation-stack';
-import Sobre from '../screens/Sobre';
+import Sobre from '../../screens/Sobre';
 
 const screens = {
   Sobre: {

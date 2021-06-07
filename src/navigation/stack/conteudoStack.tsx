@@ -1,3 +1,4 @@
+import React from 'react';
 import { RootStackParamList } from '../../typing/navigationTypes';
 import { createStackNavigator } from '@react-navigation/stack';
 

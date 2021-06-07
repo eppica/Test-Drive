@@ -1,3 +1,4 @@
+import React from 'react';
 import { RootDrawerParamList } from '../../typing/navigationTypes';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
