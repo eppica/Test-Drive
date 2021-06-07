@@ -12,7 +12,7 @@ const Drawer = createDrawerNavigator<RootDrawerParamList>();
 
 export default function DrawerComponent() {
   return (
-    <Drawer.Navigator>
+    <Drawer.Navigator drawerPosition="right">
       <Drawer.Screen name="Conteudo" component={ConteudoStack} />
       <Drawer.Screen name="Configuracoes" component={Configuracoes} />
       <Drawer.Screen name="Estatisticas" component={Estatisticas} />

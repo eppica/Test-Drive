@@ -1,3 +1,5 @@
+import { RouteProp } from '@react-navigation/core';
+import { DrawerNavigationProp, DrawerScreenProps } from '@react-navigation/drawer';
 import { StackScreenProps } from '@react-navigation/stack';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { ListaConteudosType } from './generalTypes';
@@ -22,3 +24,8 @@ export type ConteudoProps = {
 };
 
 export type TesteProps = StackScreenProps<RootStackParamList, 'Teste'>;
+
+export type HeaderProps = {
+  navigation: DrawerNavigationProp<RootStackParamList, 'Conteudo'>;
+  title: string;
+};
