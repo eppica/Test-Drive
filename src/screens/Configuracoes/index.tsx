@@ -1,10 +1,11 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text } from 'react-native';
+import { ViewStyled } from './styles';
 
 export default function Questao() {
   return (
-    <View>
+    <ViewStyled>
       <Text>Tela Configuracao</Text>
-    </View>
+    </ViewStyled>
   );
 }

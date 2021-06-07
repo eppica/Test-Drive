@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
+import { FlatList } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
-import { ConteudoProps } from '../typing/navigationTypes';
-import { ListaConteudosType } from '../typing/generalTypes';
-import { ListaConteudos } from '../utils/variables';
+import { ConteudoProps } from '../../typing/navigationTypes';
+import { ListaConteudosType } from '../../typing/generalTypes';
+import { ListaConteudos } from '../../utils/variables';
+import { Container, Title, List } from './styles';
 
 export default function Conteudo({ navigation }: ConteudoProps) {
   const pressHandler = (item: ListaConteudosType) => {
@@ -11,34 +12,17 @@ export default function Conteudo({ navigation }: ConteudoProps) {
   };
 
   return (
-    <View style={styles.container}>
+    <Container>
       <FlatList
         keyExtractor={(item) => String(item.id)}
         data={ListaConteudos}
         renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => pressHandler(item)} style={styles.list}>
+          <List onPress={() => pressHandler(item)}>
             <AntDesign name={item.icon} size={32} color="black" />
-            <Text style={styles.text}>{item.name}</Text>
-          </TouchableOpacity>
+            <Title>{item.name}</Title>
+          </List>
         )}
       />
-    </View>
+    </Container>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    flexDirection: 'column',
-  },
-  list: {
-    flex: 1,
-    flexDirection: 'row',
-    padding: 20,
-  },
-  text: {
-    fontSize: 18,
-    marginLeft: 10,
-  },
-});

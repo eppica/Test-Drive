@@ -1,5 +1,4 @@
-import { RouteProp } from '@react-navigation/core';
-import { DrawerNavigationProp, DrawerScreenProps } from '@react-navigation/drawer';
+import { DrawerNavigationProp } from '@react-navigation/drawer';
 import { StackScreenProps } from '@react-navigation/stack';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { ListaConteudosType } from './generalTypes';

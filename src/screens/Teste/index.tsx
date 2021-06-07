@@ -1,7 +1,8 @@
 import React from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
-import { TesteProps } from '../typing/navigationTypes';
+import { TesteProps } from '../../typing/navigationTypes';
+import { Container, Title, Paragraph } from './styles';
 
 export default function Teste({ navigation, route }: TesteProps) {
   const pressHandler = () => {
@@ -9,30 +10,13 @@ export default function Teste({ navigation, route }: TesteProps) {
   };
 
   return (
-    <View style={styles.container}>
+    <Container>
       <AntDesign name={route.params.icon} color="black" size={86} />
-      <Text style={styles.title}>{route.params.name}</Text>
-      <Text style={styles.paragraph}>
+      <Title>{route.params.name}</Title>
+      <Paragraph>
         Questionário com 20 questões aleatórias sobre o assunto {route.params.name}
-      </Text>
+      </Paragraph>
       <Button title="Começar" onPress={pressHandler} />
-    </View>
+    </Container>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 28,
-  },
-  paragraph: {
-    fontSize: 18,
-    textAlign: 'center',
-    margin: 40,
-  },
-});
