@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Drawer from './drawer/drawer';
+import Drawer from './drawer';
 
 import { NavigationContainer } from '@react-navigation/native';
 
