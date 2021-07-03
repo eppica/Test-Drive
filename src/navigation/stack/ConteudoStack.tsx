@@ -11,15 +11,34 @@ const ConteudoStack = createStackNavigator<RootStackParamList>();
 
 export default function ConteudoStackComponent() {
   return (
-    <ConteudoStack.Navigator
-      screenOptions={({ navigation, route }) => {
-        return {
-          headerTitle: () => <Header navigation={navigation} title={route.name} />,
-        };
-      }}>
-      <ConteudoStack.Screen name="Conteudo" component={Conteudo} />
-      <ConteudoStack.Screen name="Teste" component={Teste} />
-      <ConteudoStack.Screen name="Questao" component={Questao} />
+    <ConteudoStack.Navigator>
+      <ConteudoStack.Screen
+        name="Conteudo"
+        component={Conteudo}
+        options={({ navigation }) => {
+          return {
+            headerTitle: () => <Header navigation={navigation} title={'Conteúdo'} />,
+          };
+        }}
+      />
+      <ConteudoStack.Screen
+        name="Teste"
+        component={Teste}
+        options={({ navigation, route }) => {
+          return {
+            headerTitle: () => <Header navigation={navigation} title={'Teste'} />,
+          };
+        }}
+      />
+      <ConteudoStack.Screen
+        name="Questao"
+        component={Questao}
+        options={({ navigation }) => {
+          return {
+            headerTitle: () => <Header navigation={navigation} title={'Questão'} />,
+          };
+        }}
+      />
     </ConteudoStack.Navigator>
   );
 }

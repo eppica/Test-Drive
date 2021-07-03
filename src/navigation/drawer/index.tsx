@@ -12,10 +12,18 @@ const Drawer = createDrawerNavigator<RootDrawerParamList>();
 export default function DrawerComponent() {
   return (
     <Drawer.Navigator drawerPosition="right">
-      <Drawer.Screen name="Conteudo" component={ConteudoStack} />
-      <Drawer.Screen name="Configuracoes" component={ConfiguracoesStack} />
-      <Drawer.Screen name="Estatisticas" component={EstatisticasStack} />
-      <Drawer.Screen name="Sobre" component={SobreStack} />
+      <Drawer.Screen name="Conteudo" component={ConteudoStack} options={{ title: 'Conteúdo' }} />
+      <Drawer.Screen
+        name="Configuracoes"
+        component={ConfiguracoesStack}
+        options={{ title: 'Configurações' }}
+      />
+      <Drawer.Screen
+        name="Estatisticas"
+        component={EstatisticasStack}
+        options={{ title: 'Estatísticas' }}
+      />
+      <Drawer.Screen name="Sobre" component={SobreStack} options={{ title: 'Sobre' }} />
     </Drawer.Navigator>
   );
 }

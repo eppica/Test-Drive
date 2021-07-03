@@ -9,13 +9,16 @@ const EstatisticasStack = createStackNavigator<RootDrawerParamList>();
 
 export default function EstatisticasStackComponent() {
   return (
-    <EstatisticasStack.Navigator
-      screenOptions={({ navigation, route }) => {
-        return {
-          headerTitle: () => <Header navigation={navigation} title={route.name} />,
-        };
-      }}>
-      <EstatisticasStack.Screen name="Estatisticas" component={Estatisticas} />
+    <EstatisticasStack.Navigator>
+      <EstatisticasStack.Screen
+        name="Estatisticas"
+        component={Estatisticas}
+        options={({ navigation }) => {
+          return {
+            headerTitle: () => <Header navigation={navigation} title={'Estatísticas'} />,
+          };
+        }}
+      />
     </EstatisticasStack.Navigator>
   );
 }

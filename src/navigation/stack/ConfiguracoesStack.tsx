@@ -9,13 +9,16 @@ const ConfiguracoesStack = createStackNavigator<RootDrawerParamList>();
 
 export default function ConfiguracoesStackComponent() {
   return (
-    <ConfiguracoesStack.Navigator
-      screenOptions={({ navigation, route }) => {
-        return {
-          headerTitle: () => <Header navigation={navigation} title={route.name} />,
-        };
-      }}>
-      <ConfiguracoesStack.Screen name="Configuracoes" component={Configuracoes} />
+    <ConfiguracoesStack.Navigator>
+      <ConfiguracoesStack.Screen
+        name="Configuracoes"
+        component={Configuracoes}
+        options={({ navigation }) => {
+          return {
+            headerTitle: () => <Header navigation={navigation} title={'Configurações'} />,
+          };
+        }}
+      />
     </ConfiguracoesStack.Navigator>
   );
 }

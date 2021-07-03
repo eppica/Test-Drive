@@ -9,13 +9,16 @@ const SobreStack = createStackNavigator<RootDrawerParamList>();
 
 export default function SobreStackComponent() {
   return (
-    <SobreStack.Navigator
-      screenOptions={({ navigation, route }) => {
-        return {
-          headerTitle: () => <Header navigation={navigation} title={route.name} />,
-        };
-      }}>
-      <SobreStack.Screen name="Sobre" component={Sobre} />
+    <SobreStack.Navigator>
+      <SobreStack.Screen
+        name="Sobre"
+        component={Sobre}
+        options={({ navigation }) => {
+          return {
+            headerTitle: () => <Header navigation={navigation} title={'Sobre'} />,
+          };
+        }}
+      />
     </SobreStack.Navigator>
   );
 }
