@@ -24,7 +24,7 @@ export default function ConteudoStackComponent() {
       <ConteudoStack.Screen
         name="Teste"
         component={Teste}
-        options={({ navigation, route }) => {
+        options={({ navigation }) => {
           return {
             headerTitle: () => <Header navigation={navigation} title={'Teste'} />,
           };
