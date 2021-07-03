@@ -1,12 +1,18 @@
 {
   "name": "test-drive",
-  "displayName": "test-drive",
+  "displayName": "Test Drive",
   "expo": {
-    "name": "test-drive",
+    "name": "Test Drive",
     "slug": "test-drive",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "icon": "./assets/images/icon.png",
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#fff"
+    }
   }
 }
