@@ -1,0 +1,48 @@
+{
+  "type": "sinalizacao",
+  "quantity": 3,
+  "questions": [
+    {
+      "index": 1,
+      "type": 1,
+      "question": "Qual a cor das placas de advertência?",
+      "image": "",
+      "alternatives": [
+        { "index": 1, "content": "A1a" },
+        { "index": 2, "content": "Vermelho" },
+        { "index": 3, "content": "Azul" },
+        { "index": 4, "content": "Branco" },
+        { "index": 5, "content": "Verde" }
+      ],
+      "answer": 1
+    },
+    {
+      "index": 2,
+      "type": 2,
+      "question": "Qual o significado desta placa?",
+      "image": "R7",
+      "alternatives": [
+        { "index": 1, "content": "Sentido proibido" },
+        { "index": 2, "content": "Sentido obrigatório" },
+        { "index": 3, "content": "Proibido ultrapassar" },
+        { "index": 4, "content": "Estacionamento regulamentado" },
+        { "index": 5, "content": "Alfândega" }
+      ],
+      "answer": 3
+    },
+    {
+      "index": 3,
+      "type": 3,
+      "question": "Qual destas placas é de regulamentação?",
+      "image": "",
+      "alternatives": [
+        { "index": 1, "content": "A1a" },
+        { "index": 2, "content": "A10b" },
+        { "index": 3, "content": "R9" },
+        { "index": 4, "content": "A21b" },
+        { "index": 5, "content": "A32a" }
+      ],
+      "answer": 3
+    }
+  ]
+}
