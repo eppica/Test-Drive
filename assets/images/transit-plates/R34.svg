@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 15.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1"
+	 id="svg2" inkscape:version="0.48.2 r9819" sodipodi:docname="AJAX1.svg" sodipodi:version="0.32" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="525.477px"
+	 height="525.477px" viewBox="0 0 525.477 525.477" enable-background="new 0 0 525.477 525.477" xml:space="preserve">
+<sodipodi:namedview  height="601px" width="601px" id="base" inkscape:document-units="px" inkscape:window-width="1280" inkscape:pageshadow="2" inkscape:window-height="1004" inkscape:window-x="-8" fit-margin-bottom="0" inkscape:current-layer="layer1" fit-margin-right="0" inkscape:window-y="-8" inkscape:pageopacity="0.0" inkscape:window-maximized="1" inkscape:cx="369.80155" fit-margin-top="0" bordercolor="#666666" pagecolor="#ffffff" borderopacity="1.0" inkscape:zoom="0.64333334" showgrid="false" inkscape:cy="235.04871" gridtolerance="10000" objecttolerance="10" fit-margin-left="0" guidetolerance="10">
+	</sodipodi:namedview>
+<g>
+	<path id="rect3651" fill="#C50000" d="M274.646,0.508C129.372-6.089,7.106,105.556,0.509,250.832
+		c-6.598,145.273,105.046,267.54,250.321,274.137c145.272,6.6,267.541-105.046,274.138-250.32
+		C531.566,129.372,419.922,7.107,274.646,0.508z"/>
+	<path id="rect4540" fill="#FFFFFF" d="M272.378,50.458L272.378,50.458C155.138,45.134,55.78,135.859,50.457,253.099l0,0
+		c-5.324,117.24,85.401,216.597,202.642,221.919l0,0c117.239,5.324,216.596-85.399,221.919-202.642l0,0
+		C480.344,155.139,389.619,55.782,272.378,50.458z"/>
+</g>
+<path fill="none" stroke="#C50000" stroke-width="55" stroke-miterlimit="10" d="M422.239,427.739"/>
+<path fill="none" stroke="#C50000" stroke-width="55" stroke-miterlimit="10" d="M92.239,97.738"/>
+<g>
+	<circle cx="147.273" cy="298.33" r="15.178"/>
+	<circle cx="378.914" cy="301.967" r="13.756"/>
+	<path d="M249.473,149.03c0,0,2.473-0.337,2.473-6.409c0-6.071-2.361-6.409-2.361-6.409l-38.79-0.674l-67.798,152.674l10.562,11.698
+		l64.446-150.424L249.473,149.03z"/>
+	<path d="M263.116,345.828c0,0-2.343,2.599-0.043,4.897c2.3,2.301,4.672,0.183,4.672,0.183l8.712-8.829l-15.066-32.492
+		c0,0-1.012-1.911-4.048-1.012s-1.686,4.609-1.686,4.609l12.817,27.04L263.116,345.828z"/>
+	<circle fill="none" stroke="#000000" stroke-width="16.1951" cx="147.272" cy="298.33" r="55.034"/>
+	<circle fill="none" stroke="#000000" stroke-width="6.553" cx="257.989" cy="310.48" r="22.269"/>
+	<circle fill="none" stroke="#000000" stroke-width="16.1951" cx="378.914" cy="301.967" r="55.034"/>
+	<rect x="194.661" y="182.283" width="140.648" height="12.648"/>
+	<polygon points="243.176,298.33 178.583,229.477 182.799,213.118 251.946,291.709 	"/>
+	<polygon points="354.823,172.304 269.148,293.732 257.343,288.212 339.645,172.304 	"/>
+	<polygon points="370.339,295.756 331.926,205.092 342.392,190.313 383.494,295.756 	"/>
+	<rect x="268.924" y="284.964" width="102.651" height="5.733"/>
+	<polygon points="375.511,314.533 269.936,334.098 269.936,327.577 375.511,308.013 	"/>
+	<path d="M370.62,170.111c0,2.235-2.431,3.429-4.666,3.429h-40.926c-2.235,0-4.048-1.813-4.048-4.048v-6.071
+		c0-2.235,1.813-4.047,4.048-4.047l40.926-2.024c2.235,0,5.172,3.836,5.172,6.071L370.62,170.111z"/>
+</g>
+</svg>
