@@ -10,6 +10,7 @@
     "format": "prettier --check ./src"
   },
   "dependencies": {
+    "@react-native-community/datetimepicker": "^3.5.2",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/drawer": "^5.12.5",
     "@react-navigation/native": "^5.9.4",
