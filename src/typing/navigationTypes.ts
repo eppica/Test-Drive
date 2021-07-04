@@ -7,6 +7,7 @@ export type RootStackParamList = {
   Conteudo: undefined;
   Teste: ListaConteudosType;
   Questao: undefined;
+  Resultado: undefined;
 };
 
 export type RootDrawerParamList = {

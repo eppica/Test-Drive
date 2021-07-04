@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Teste from '../../screens/Teste';
 import Conteudo from '../../screens/Conteudo';
 import Questao from '../../screens/Questao';
+import Resultado from '../../screens/Resultado';
 import Header from '../../components/Header';
 
 const ConteudoStack = createStackNavigator<RootStackParamList>();
@@ -36,6 +37,15 @@ export default function ConteudoStackComponent() {
         options={({ navigation }) => {
           return {
             headerTitle: () => <Header navigation={navigation} title={'Questão'} />,
+          };
+        }}
+      />
+      <ConteudoStack.Screen
+        name="Resultado"
+        component={Resultado}
+        options={({ navigation }) => {
+          return {
+            headerTitle: () => <Header navigation={navigation} title={'Resultado'} />,
           };
         }}
       />
