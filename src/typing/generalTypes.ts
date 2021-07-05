@@ -4,22 +4,22 @@ export type ListaConteudosType = {
   name: string;
 };
 
-export type test = {
+export type Test = {
   type: string,
   quantity: number,
   questions: string[]
 }
 
-export type alternative = {
+export type Alternative = {
   index: number,
   content: string
 }
 
-export type question = {
+export type Question = {
   index: number,
   type: number,
   question: string,
   image: string,
-  alternatives: alternative[],
+  alternatives: Alternative[],
   answer: number
 }

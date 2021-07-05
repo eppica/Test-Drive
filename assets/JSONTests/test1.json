@@ -8,7 +8,7 @@
       "question": "Qual a cor das placas de advertência?",
       "image": "",
       "alternatives": [
-        { "index": 1, "content": "A1a" },
+        { "index": 1, "content": "Amarelo" },
         { "index": 2, "content": "Vermelho" },
         { "index": 3, "content": "Azul" },
         { "index": 4, "content": "Branco" },
