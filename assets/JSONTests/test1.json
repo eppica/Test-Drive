@@ -20,11 +20,11 @@
       "index": 2,
       "type": 2,
       "question": "Qual o significado desta placa?",
-      "image": "R7",
+      "image": "https://raw.githubusercontent.com/eppica/Test-Drive/main/assets/images/transit-plates/R40.svg",
       "alternatives": [
         { "index": 1, "content": "Sentido proibido" },
         { "index": 2, "content": "Sentido obrigatório" },
-        { "index": 3, "content": "Proibido ultrapassar" },
+        { "index": 3, "content": "Trânsito Proibido a carros de mão" },
         { "index": 4, "content": "Estacionamento regulamentado" },
         { "index": 5, "content": "Alfândega" }
       ],
@@ -36,11 +36,26 @@
       "question": "Qual destas placas é de regulamentação?",
       "image": "",
       "alternatives": [
-        { "index": 1, "content": "A1a" },
-        { "index": 2, "content": "A10b" },
-        { "index": 3, "content": "R9" },
-        { "index": 4, "content": "A21b" },
-        { "index": 5, "content": "A32a" }
+        {
+          "index": 1,
+          "content": "https://raw.githubusercontent.com/eppica/Test-Drive/main/assets/images/transit-plates/A1a.svg"
+        },
+        {
+          "index": 2,
+          "content": "https://raw.githubusercontent.com/eppica/Test-Drive/main/assets/images/transit-plates/A10b.svg"
+        },
+        {
+          "index": 3,
+          "content": "https://raw.githubusercontent.com/eppica/Test-Drive/main/assets/images/transit-plates/R9.svg"
+        },
+        {
+          "index": 4,
+          "content": "https://raw.githubusercontent.com/eppica/Test-Drive/main/assets/images/transit-plates/A21b.svg"
+        },
+        {
+          "index": 5,
+          "content": "https://raw.githubusercontent.com/eppica/Test-Drive/main/assets/images/transit-plates/A32a.svg"
+        }
       ],
       "answer": 3
     }
