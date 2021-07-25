@@ -1,5 +1,7 @@
 import { ListaConteudosType } from '../typing/generalTypes';
 
+export const URIBase: string = 'https://raw.githubusercontent.com/eppica/Test-Drive/main/assets/JSONTests/test1.json?';
+
 export const ListaConteudos: Array<ListaConteudosType> = [
   {
     id: 1,

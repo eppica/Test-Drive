@@ -7,6 +7,7 @@ import Conteudo from '../../screens/Conteudo';
 import Questao from '../../screens/Questao';
 import Resultado from '../../screens/Resultado';
 import Header from '../../components/Header';
+import QuestionHeader from '../../components/QuestionHeader';
 
 const ConteudoStack = createStackNavigator<RootStackParamList>();
 
@@ -36,7 +37,9 @@ export default function ConteudoStackComponent() {
         component={Questao}
         options={({ navigation }) => {
           return {
-            headerTitle: () => <Header navigation={navigation} title={'Questão'} />,
+            cardShadowEnabled: false,
+            headerTitle: () => <QuestionHeader navigation={navigation} title={'Questão'} />,
+            headerLeft: () => null,
           };
         }}
       />

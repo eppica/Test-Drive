@@ -1,13 +1,13 @@
 import { DrawerNavigationProp } from '@react-navigation/drawer';
 import { StackScreenProps } from '@react-navigation/stack';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { ListaConteudosType } from './generalTypes';
+import { ListaConteudosType, Test, Question } from './generalTypes';
 
 export type RootStackParamList = {
   Conteudo: undefined;
   Teste: ListaConteudosType;
-  Questao: undefined;
   Resultado: undefined;
+  Questao: Test;
 };
 
 export type RootDrawerParamList = {
@@ -25,7 +25,15 @@ export type ConteudoProps = {
 
 export type TesteProps = StackScreenProps<RootStackParamList, 'Teste'>;
 
+export type QuestaoProps = StackScreenProps<RootStackParamList, 'Questao'>;
+
 export type HeaderProps = {
   navigation: DrawerNavigationProp<RootStackParamList, 'Conteudo'>;
   title: string;
+};
+
+export type QuestionProps = {
+  actual: Question;
+  isReview: boolean;
+  functionSetAnswer: Function;
 };

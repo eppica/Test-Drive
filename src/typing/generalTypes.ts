@@ -7,7 +7,10 @@ export type ListaConteudosType = {
 export type Test = {
   type: string,
   quantity: number,
-  questions: string[]
+  questions: Question[],
+  isReview: boolean,
+  duration: number,
+  remainingTime?: number
 }
 
 export type Alternative = {
@@ -22,4 +25,5 @@ export type Question = {
   image: string,
   alternatives: Alternative[],
   answer: number
+  userAnswer?: number
 }
