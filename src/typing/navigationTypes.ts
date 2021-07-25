@@ -6,8 +6,8 @@ import { ListaConteudosType, Test, Question } from './generalTypes';
 export type RootStackParamList = {
   Conteudo: undefined;
   Teste: ListaConteudosType;
-  Resultado: undefined;
   Questao: Test;
+  Resultado: Test;
 };
 
 export type RootDrawerParamList = {
@@ -26,6 +26,8 @@ export type ConteudoProps = {
 export type TesteProps = StackScreenProps<RootStackParamList, 'Teste'>;
 
 export type QuestaoProps = StackScreenProps<RootStackParamList, 'Questao'>;
+
+export type ResultadoProps = StackScreenProps<RootStackParamList, 'Resultado'>;
 
 export type HeaderProps = {
   navigation: DrawerNavigationProp<RootStackParamList, 'Conteudo'>;

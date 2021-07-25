@@ -11,18 +11,78 @@ import {
   TextButton,
 } from './styles';
 import { View } from 'react-native';
-import { ConteudoProps } from '../../typing/navigationTypes';
+import { ResultadoProps } from '../../typing/navigationTypes';
 import ProgressCircle from 'react-native-progress-circle';
+import { Test } from '../../typing/generalTypes';
 
-export default function Resultado({ navigation }: ConteudoProps) {
-  const [acertos, setAcertos] = useState(16);
-  const [quantidadeQuestoes, setQuantidadeQuestoes] = useState(20);
-  const [tempoDemorado, setTempoDemorado] = useState(20);
+export default function Resultado({ navigation, route }: ResultadoProps) {
+  const test: Test = {
+    type: route.params.type,
+    quantity: route.params.quantity,
+    questions: route.params.questions,
+    isReview: route.params.isReview,
+    duration: route.params.duration,
+    remainingTime: route.params.remainingTime,
+  };
+
+  const [acertos, setAcertos] = useState(() => {
+    let acertos = 0;
+    test.questions.forEach((question) => {
+      if (question.answer == question.userAnswer) {
+        acertos++;
+      }
+    });
+    return acertos;
+  });
+  const [quantidadeQuestoes, setQuantidadeQuestoes] = useState(test.quantity);
+  const [tempoDemorado, setTempoDemorado] = useState(() => {
+    let time = '0';
+    if (test.remainingTime != undefined) {
+      let remainingTime = test.duration * 60 - test.remainingTime;
+      let minutes = Math.trunc(remainingTime / 60);
+      let seconds = remainingTime % 60;
+      time =
+        minutes +
+        ':' +
+        (seconds.toString().length == 2
+          ? remainingTime % 60
+          : '0' + (remainingTime % 60).toString());
+    } else {
+      time = '--:--';
+    }
+    return time;
+  });
   const [porcentagemAcertos, setPorcentagemAcertos] = useState(
-    (acertos / quantidadeQuestoes) * 100,
+    Math.trunc((acertos / quantidadeQuestoes) * 100),
   );
 
-  const reviewQuestionsHandler = () => {};
+  // test.questions.map((question) => {
+  //   if (question.answer == question.userAnswer) {
+  //     setAcertos((acertos) => acertos + 1);
+  //   }
+  // });
+
+  // setQuantidadeQuestoes(test.quantity);
+
+  // if (test.remainingTime != undefined) {
+  //   let minutes = Math.trunc(test.remainingTime / 60);
+  //   let seconds = test.remainingTime % 60;
+  //   setTempoDemorado(
+  //     minutes +
+  //       ':' +
+  //       (seconds.toString().length == 2
+  //         ? test.remainingTime % 60
+  //         : '0' + (test.remainingTime % 60).toString()),
+  //   );
+  // }
+
+  // setPorcentagemAcertos((acertos / quantidadeQuestoes) * 100);
+
+  const reviewQuestionsHandler = () => {
+    test.isReview = true;
+
+    navigation.replace('Questao', test);
+  };
 
   const continueHandler = () => {
     navigation.reset({
@@ -58,7 +118,7 @@ export default function Resultado({ navigation }: ConteudoProps) {
         <Icon name={'time-slot'} size={55} color="#474747" />
         <View>
           <Title>Tempo demorado</Title>
-          <OtherText>{tempoDemorado}s</OtherText>
+          <OtherText>{tempoDemorado}</OtherText>
         </View>
       </List>
 

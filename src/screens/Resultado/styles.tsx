@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
+import { ScrollView } from 'react-native-gesture-handler';
 
-export const ViewStyled = styled(View)`
+export const ViewStyled = styled(ScrollView)`
   flex: 1;
   background-color: #fff;
   flex-direction: column;
