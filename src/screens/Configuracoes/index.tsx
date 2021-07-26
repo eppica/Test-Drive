@@ -1,14 +1,24 @@
-import React, { SyntheticEvent, useState } from 'react';
+import React, { SyntheticEvent, useEffect, useState } from 'react';
 import { Switch } from 'react-native';
 import { ViewStyled, List, HideableList, Title, ConfigText, Input } from './styles';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { getAsyncValue, saveAsyncValue } from '../../utils/async';
 
 export default function Configuracoes() {
   const [isNotificationEnabled, setIsNotificationEnabled] = useState(false);
   const [showTimePicker, setShowTimePicker] = useState(false);
   const [notificationHour, setNotificationHour] = useState(new Date(0));
-  const [maxTestTime, setMaxTestTime] = useState('20');
-  const [questionsQuantity, setQuestionsQuantity] = useState('10');
+  const [maxTestTime, setMaxTestTime] = useState('--');
+  const [questionsQuantity, setQuestionsQuantity] = useState('--');
+
+  useEffect(() => {
+    getAsyncValue('MaxTestTime').then((result) => {
+      setMaxTestTime(result);
+    });
+    getAsyncValue('QuestionsQuantity').then((result) => {
+      setQuestionsQuantity(result);
+    });
+  }, []);
 
   const handleSwitch = () => setIsNotificationEnabled((previousState) => !previousState);
 
@@ -24,10 +34,12 @@ export default function Configuracoes() {
 
   const handleMaxTestTime = (text: string) => {
     setMaxTestTime(text);
+    saveAsyncValue('MaxTestTime', text);
   };
 
   const handleQuestionsQuantity = (text: string) => {
     setQuestionsQuantity(text);
+    saveAsyncValue('QuestionsQuantity', text);
   };
 
   return (

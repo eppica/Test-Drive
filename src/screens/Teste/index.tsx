@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import { Alert, Button } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
@@ -6,6 +6,7 @@ import { Test } from '../../typing/generalTypes';
 import { TesteProps } from '../../typing/navigationTypes';
 import { Container, Title, Paragraph } from './styles';
 import { URIBase } from '../../utils/variables';
+import { getAsyncValue } from '../../utils/async';
 
 export default function Teste({ navigation, route }: TesteProps) {
   const pressHandler = () => {
@@ -14,14 +15,26 @@ export default function Teste({ navigation, route }: TesteProps) {
     }
   };
 
+  const [quantity, setQuantity] = React.useState(0);
+  const [duration, setDuration] = React.useState(0);
+
+  useEffect(() => {
+    getAsyncValue('MaxTestTime').then((result) => {
+      setDuration(result);
+    });
+    getAsyncValue('QuestionsQuantity').then((result) => {
+      setQuantity(result);
+    });
+  }, []);
+
   const [title, setTitle] = React.useState('Carregando...');
 
   const teste: Test = {
     type: '',
-    quantity: 0,
+    quantity: quantity,
     questions: [],
     isReview: false,
-    duration: 4,
+    duration: duration,
   };
 
   const handleError = () => {
@@ -64,7 +77,10 @@ export default function Teste({ navigation, route }: TesteProps) {
       <Paragraph>
         {route.params.id == 7
           ? 'Questionário com 30 questões no padrão DETRAN'
-          : 'Questionário com 20 questões aleatórias sobre o assunto ' + route.params.name}
+          : 'Questionário com ' +
+            quantity +
+            ' questões aleatórias sobre o assunto ' +
+            route.params.name}
       </Paragraph>
       <Button title="Começar" onPress={pressHandler} />
     </Container>
