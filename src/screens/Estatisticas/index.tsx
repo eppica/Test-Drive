@@ -1,14 +1,140 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ViewStyled, Title, OtherText, List, Title2 } from './styles';
 import { LineChart } from 'react-native-chart-kit';
 import { Dimensions, ScrollView } from 'react-native';
+import { getAsyncValue } from '../../utils/async';
+import { Statistic } from '../../typing/generalTypes';
 
 export default function Estatisticas() {
+  let datePerDay: number[] = [];
+  let datesLabel: string[] = [];
+
+  const [datePerDayState, setDatePerDayState] = useState([0]);
+  const [datesLabelState, setDatesLabelState] = useState(['']);
+
+  const [pontosLegislacao, setPontosLegislacao] = useState(0);
+  const [pontosSinalizacao, setPontosSinalizacao] = useState(0);
+  const [pontosDirecaoDefensiva, setPontosDirecaoDefensiva] = useState(0);
+  const [pontosMeioAmbiente, setPontosMeioAmbiente] = useState(0);
+  const [pontosMecanicaBasica, setPontosMecanicaBasica] = useState(0);
+  const [pontosPrimeirosSocorros, setPontosPrimeirosSocorros] = useState(0);
+  const [pontosSimulado, setPontosSimulado] = useState(0);
+
+  useEffect(() => {
+    getAsyncValue('Statistics').then((result) => {
+      let stats: Statistic[] = JSON.parse(result);
+
+      let one = 0;
+      let two = 0;
+      let three = 0;
+      let four = 0;
+      let five = 0;
+
+      let validStats: Statistic[] = [];
+
+      stats.forEach((stat) => {
+        let date = new Date();
+        let dateString = '';
+
+        date.setDate(date.getDate() - 4);
+        dateString = date.getDate() + '/' + (date.getMonth() + 1);
+        datesLabel.indexOf(dateString) == -1 ? datesLabel.push(dateString) : null;
+
+        if (stat.date.toString().substr(0, 10) == date.toISOString().substr(0, 10)) {
+          five++;
+          validStats.push(stat);
+        }
+
+        date.setDate(date.getDate() + 1);
+        dateString = date.getDate() + '/' + (date.getMonth() + 1);
+        datesLabel.indexOf(dateString) == -1 ? datesLabel.push(dateString) : null;
+
+        if (stat.date.toString().substr(0, 10) == date.toISOString().substr(0, 10)) {
+          four++;
+          validStats.push(stat);
+        }
+
+        date.setDate(date.getDate() + 1);
+        dateString = date.getDate() + '/' + (date.getMonth() + 1);
+        datesLabel.indexOf(dateString) == -1 ? datesLabel.push(dateString) : null;
+
+        if (stat.date.toString().substr(0, 10) == date.toISOString().substr(0, 10)) {
+          three++;
+          validStats.push(stat);
+        }
+
+        date.setDate(date.getDate() + 1);
+        dateString = date.getDate() + '/' + (date.getMonth() + 1);
+        datesLabel.indexOf(dateString) == -1 ? datesLabel.push(dateString) : null;
+
+        if (stat.date.toString().substr(0, 10) == date.toISOString().substr(0, 10)) {
+          two++;
+          validStats.push(stat);
+        }
+
+        date.setDate(date.getDate() + 1);
+        dateString = date.getDate() + '/' + (date.getMonth() + 1);
+        datesLabel.indexOf(dateString) == -1 ? datesLabel.push(dateString) : null;
+
+        if (stat.date.toString().substr(0, 10) == date.toISOString().substr(0, 10)) {
+          one++;
+          validStats.push(stat);
+        }
+      });
+
+      datePerDay.push(five);
+      datePerDay.push(four);
+      datePerDay.push(three);
+      datePerDay.push(two);
+      datePerDay.push(one);
+
+      setDatePerDayState(datePerDay);
+      setDatesLabelState(datesLabel);
+
+      let conteudos = [
+        'legislacao',
+        'sinalizacao',
+        'direcaodefensiva',
+        'meioambiente',
+        'mecanicabasica',
+        'primeirossocorros',
+        'simulado',
+      ];
+
+      conteudos.forEach((conteudo) => {
+        let actual = validStats.filter((stat) => stat.type == conteudo);
+
+        let total = 0;
+        actual.forEach((a) => (total += a.percentage));
+
+        let media = total / actual.length;
+
+        media = isNaN(media) ? 0 : media;
+
+        if (conteudo == 'legislacao') {
+          setPontosLegislacao(media);
+        } else if (conteudo == 'sinalizacao') {
+          setPontosSinalizacao(media);
+        } else if (conteudo == 'direcaodefensiva') {
+          setPontosDirecaoDefensiva(media);
+        } else if (conteudo == 'meioambiente') {
+          setPontosMeioAmbiente(media);
+        } else if (conteudo == 'mecanicabasica') {
+          setPontosMecanicaBasica(media);
+        } else if (conteudo == 'primeirossocorros') {
+          setPontosPrimeirosSocorros(media);
+        } else if (conteudo == 'simulado') {
+          setPontosSimulado(media);
+        }
+      });
+    });
+  }, []);
+
   const data = {
-    labels: ['01/07', '02/07', '03/07', '04/07', '05/07', '06/07'],
+    labels: datesLabelState,
     datasets: [
       {
-        data: [20, 20, 30, 20, 10, 15],
+        data: datePerDayState,
         strokeWidth: 5,
       },
     ],
@@ -33,13 +159,6 @@ export default function Estatisticas() {
   const style = {
     marginVertical: 20,
   };
-
-  const [pontosLegislacao, setPontosLegislacao] = useState(90);
-  const [pontosSinalizacao, setPontosSinalizacao] = useState(95);
-  const [pontosDirecaoDefensiva, setPontosDirecaoDefensiva] = useState(80);
-  const [pontosMeioAmbiente, setPontosMeioAmbiente] = useState(77);
-  const [pontosMecanicaBasica, setPontosMecanicaBasica] = useState(60);
-  const [pontosPrimeirosSocorros, setPontosPrimeirosSocorros] = useState(40);
 
   return (
     <ViewStyled>
@@ -78,6 +197,10 @@ export default function Estatisticas() {
         <List>
           <Title2>Primeiros Socorros</Title2>
           <OtherText>{pontosPrimeirosSocorros}%</OtherText>
+        </List>
+        <List>
+          <Title2>Simulado</Title2>
+          <OtherText>{pontosSimulado}%</OtherText>
         </List>
       </ScrollView>
     </ViewStyled>
