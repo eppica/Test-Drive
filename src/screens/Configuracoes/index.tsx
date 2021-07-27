@@ -4,12 +4,55 @@ import { ViewStyled, List, HideableList, Title, ConfigText, Input } from './styl
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { getAsyncValue, saveAsyncValue } from '../../utils/async';
 
+import Constants from 'expo-constants';
+import * as Permissions from 'expo-permissions';
+import * as Notifications from 'expo-notifications';
+
 export default function Configuracoes() {
   const [isNotificationEnabled, setIsNotificationEnabled] = useState(false);
   const [showTimePicker, setShowTimePicker] = useState(false);
-  const [notificationHour, setNotificationHour] = useState(new Date(0));
+  const [notificationHour, setNotificationHour] = useState('--:--');
+  const [notificationHourDate, setNotificationHourDate] = useState(new Date());
   const [maxTestTime, setMaxTestTime] = useState('--');
   const [questionsQuantity, setQuestionsQuantity] = useState('--');
+
+  const sendNotification = (hour: number, minutes: number) => {
+    const schedulingOptions = {
+      content: {
+        title: 'Vrumm Vrumm',
+        body: 'É hora de estudar para o seu teste teórico de direção!',
+        sound: true,
+        priority: Notifications.AndroidNotificationPriority.HIGH,
+        color: 'white',
+      },
+      trigger: {
+        hour: hour,
+        minute: minutes,
+        repeats: true,
+      },
+    };
+    Notifications.scheduleNotificationAsync(schedulingOptions);
+  };
+
+  function cancelAllScheduledNotifications() {
+    Notifications.cancelAllScheduledNotificationsAsync();
+  }
+
+  const handleNotification = () => {
+    console.log('Notificação recebida com o aplicativo aberto');
+  };
+
+  const askNotification = async () => {
+    const { status } = await Notifications.requestPermissionsAsync();
+    if (Constants.isDevice && status === 'granted')
+      console.log('Permissão para enviar notificações concedida.');
+  };
+
+  useEffect(() => {
+    askNotification();
+    const listener = Notifications.addNotificationReceivedListener(handleNotification);
+    return () => listener.remove();
+  }, []);
 
   useEffect(() => {
     getAsyncValue('MaxTestTime').then((result) => {
@@ -20,14 +63,35 @@ export default function Configuracoes() {
     });
   }, []);
 
-  const handleSwitch = () => setIsNotificationEnabled((previousState) => !previousState);
+  const handleSwitch = () => {
+    if (isNotificationEnabled) {
+      setIsNotificationEnabled(false);
+      cancelAllScheduledNotifications();
+    } else {
+      setIsNotificationEnabled(true);
+      if (notificationHour != '--:--') {
+        sendNotification(
+          Number(notificationHour.substr(0, 2)),
+          Number(notificationHour.substr(2, 2)),
+        );
+      }
+    }
+  };
 
   const handleTimeChange = (
     event: SyntheticEvent<Readonly<{ timestamp: number }>, Event>,
     date: Date | undefined,
   ) => {
     setShowTimePicker(false);
-    setNotificationHour(date || notificationHour);
+    if (date != undefined) {
+      setNotificationHourDate(date);
+      setNotificationHour(date.toLocaleTimeString().substring(0, 5));
+      saveAsyncValue('NotificationTime', notificationHour);
+      sendNotification(
+        parseInt(date.toLocaleTimeString().substr(0, 2)),
+        parseInt(date.toLocaleTimeString().substr(3, 2)),
+      );
+    }
   };
 
   const handleShowTimePicker = () => setShowTimePicker(true);
@@ -57,12 +121,10 @@ export default function Configuracoes() {
       {isNotificationEnabled && (
         <HideableList>
           <Title>Hora da notificação</Title>
-          <ConfigText onPress={handleShowTimePicker}>
-            {notificationHour.toTimeString().substr(0, 5)}
-          </ConfigText>
+          <ConfigText onPress={handleShowTimePicker}>{notificationHour}</ConfigText>
           {showTimePicker && (
             <DateTimePicker
-              value={notificationHour}
+              value={notificationHourDate}
               mode="time"
               is24Hour={true}
               display="default"

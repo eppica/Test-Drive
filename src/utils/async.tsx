@@ -24,6 +24,7 @@ export const startConfigurations = async () => {
   let maxTestTime = await getAsyncValue('MaxTestTime');
   let questionsQuantity = await getAsyncValue('QuestionsQuantity');
   let statistics = await getAsyncValue('Statistics');
+  let notificationTime = await getAsyncValue('NotificationTime');
   if (maxTestTime == '') {
     saveAsyncValue('MaxTestTime', '20');
     console.log('MaxTestTime initialized');
@@ -35,6 +36,10 @@ export const startConfigurations = async () => {
   if (statistics == '') {
     saveAsyncValue('Statistics', JSON.stringify([]));
     console.log('Statistics initialized');
+  }
+  if (notificationTime == '') {
+    saveAsyncValue('NotificationTime', JSON.stringify('--:--'));
+    console.log('NotificationTime initialized');
   }
 };
 
