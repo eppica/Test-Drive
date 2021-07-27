@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Statistic } from '../typing/generalTypes';
 
 export const saveAsyncValue = async (key: string, value: string) => {
   try {
@@ -22,6 +23,30 @@ export const getAsyncValue = async (key: string) => {
 export const startConfigurations = async () => {
   let maxTestTime = await getAsyncValue('MaxTestTime');
   let questionsQuantity = await getAsyncValue('QuestionsQuantity');
-  maxTestTime == '' ? saveAsyncValue('MaxTestTime', '20') : null;
-  questionsQuantity == '' ? saveAsyncValue('QuestionsQuantity', '15') : null;
+  let statistics = await getAsyncValue('Statistics');
+  if (maxTestTime == '') {
+    saveAsyncValue('MaxTestTime', '20');
+    console.log('MaxTestTime initialized');
+  }
+  if (questionsQuantity == '') {
+    saveAsyncValue('QuestionsQuantity', '15');
+    console.log('QuestionsQuantity initialized');
+  }
+  if (statistics == '') {
+    saveAsyncValue('Statistics', JSON.stringify([]));
+    console.log('Statistics initialized');
+  }
+};
+
+export const saveStatistic = async (item: Statistic) => {
+  await getAsyncValue('Statistics').then((result) => {
+    let statistics: Statistic[] = JSON.parse(result);
+    statistics.push(item);
+    saveAsyncValue('Statistics', JSON.stringify(statistics));
+  });
+};
+
+export const findStatistics = async () => {
+  let statistics: Statistic[] = await getAsyncValue('Statistics');
+  console.log(statistics);
 };

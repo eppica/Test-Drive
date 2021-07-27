@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   ViewStyled,
   Title,
@@ -13,7 +13,8 @@ import {
 import { View } from 'react-native';
 import { ResultadoProps } from '../../typing/navigationTypes';
 import ProgressCircle from 'react-native-progress-circle';
-import { Test } from '../../typing/generalTypes';
+import { Statistic, Test } from '../../typing/generalTypes';
+import { saveStatistic } from '../../utils/async';
 
 export default function Resultado({ navigation, route }: ResultadoProps) {
   const test: Test = {
@@ -56,31 +57,19 @@ export default function Resultado({ navigation, route }: ResultadoProps) {
     Math.trunc((acertos / quantidadeQuestoes) * 100),
   );
 
-  // test.questions.map((question) => {
-  //   if (question.answer == question.userAnswer) {
-  //     setAcertos((acertos) => acertos + 1);
-  //   }
-  // });
-
-  // setQuantidadeQuestoes(test.quantity);
-
-  // if (test.remainingTime != undefined) {
-  //   let minutes = Math.trunc(test.remainingTime / 60);
-  //   let seconds = test.remainingTime % 60;
-  //   setTempoDemorado(
-  //     minutes +
-  //       ':' +
-  //       (seconds.toString().length == 2
-  //         ? test.remainingTime % 60
-  //         : '0' + (test.remainingTime % 60).toString()),
-  //   );
-  // }
-
-  // setPorcentagemAcertos((acertos / quantidadeQuestoes) * 100);
+  useEffect(() => {
+    const stat: Statistic = {
+      date: new Date(),
+      type: route.params.type,
+      percentage: porcentagemAcertos,
+    };
+    if (!test.isReview) {
+      saveStatistic(stat);
+    }
+  }, []);
 
   const reviewQuestionsHandler = () => {
     test.isReview = true;
-
     navigation.replace('Questao', test);
   };
 

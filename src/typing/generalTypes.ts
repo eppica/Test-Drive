@@ -27,3 +27,9 @@ export type Question = {
   answer: number
   userAnswer?: number
 }
+
+export type Statistic = {
+  date: Date,
+  type: string,
+  percentage: number
+}
