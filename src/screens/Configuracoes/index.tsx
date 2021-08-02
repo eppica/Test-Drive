@@ -31,6 +31,7 @@ export default function Configuracoes() {
         repeats: true,
       },
     };
+    cancelAllScheduledNotifications();
     Notifications.scheduleNotificationAsync(schedulingOptions);
   };
 
