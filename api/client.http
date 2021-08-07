@@ -1,0 +1,41 @@
+### GET ALL
+GET http://localhost:3333/question HTTP/1.1
+
+### GET 3 LEGISLACAO QUESTIONS
+GET http://localhost:3333/legislacao/2 HTTP/1.1
+
+### POST QUESTION
+POST http://localhost:3333/question HTTP/1.1
+content-type: application/json
+
+{
+	"id": 1,
+	"type": 2,
+	"question": "Qual a cor das placas de sinalização?",
+	"alternatives": [{
+			"id": 1,
+			"text": "Amarelo"
+		},
+		{
+			"id": 2,
+			"text": "Vermelho"
+		},
+		{
+			"id": 3,
+			"text": "Verde"
+		},
+		{
+			"id": 4,
+			"text": "Azul"
+		},
+		{
+			"id": 5,
+			"text": "Preto"
+		}
+	],
+    "content": "legislacao",
+	"answer_id": 2
+}
+
+### DELETE QUESTION
+DELETE http://localhost:3333/legislacao HTTP/1.1
