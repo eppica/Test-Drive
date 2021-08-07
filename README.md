@@ -12,7 +12,7 @@
   <a href="#documentation">Documentation</a> •
   <a href="#requirements">Requirements</a> •
   <a href="#running">Running</a> •
-  <a href="#%EF%B8%8F-license">License</a>
+  <a href="#balance_scale-license">License</a>
 </p>
 
 ## About
