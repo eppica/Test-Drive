@@ -30,3 +30,17 @@ npm start
 ```
 
 And this will start the server.
+
+## How to Test
+
+### Hot Reload
+
+In order to improve the development of API, you can also run using `nodemon`. First install it locally:
+
+```terminal
+npm install nodemon
+```
+
+### Rest Client
+
+To test the routes of the API, there's `client.http` file with some examples of requests. To make requests on VSCode, install [Rest Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) extension.
