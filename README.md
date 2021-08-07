@@ -4,7 +4,7 @@
   Test Drive
   <br>
 </h1>
-<h4 align="center"> Test Drive is an app that aims to help the theory study to take a driver's license in Brazil..</h4>
+<h4 align="center"> Test Drive is an app that aims to help the theory study to take a driver's license in Brazil.</h4>
 
 <p align="center">
   <a href="#about">About</a> •
