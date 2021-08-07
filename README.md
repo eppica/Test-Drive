@@ -47,8 +47,8 @@ git clone https://github.com/eppica/Test-Drive.git
 ## Running
 
 Follow each README instructions to run both API and APP:
-- [API](https://github.com/eppica/Test-Drive/blob/main/app/README.md)
-- [APP]()
+- [API](https://github.com/eppica/Test-Drive/blob/main/api/README.md)
+- [APP](https://github.com/eppica/Test-Drive/blob/main/app/README.md)
 
 ## :balance_scale: License
 [MIT License](https://github.com/eppica/Test-Drive/blob/main/LICENSE)
