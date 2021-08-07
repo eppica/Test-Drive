@@ -1,6 +1,6 @@
 # :oncoming_automobile: Test Drive
 
-Test Drive is a mobile app developed to a Innovation and New Technologies class in order to apply and improve our knowledge in developing mobile apps. The app aims to help students taking a drivers license to practice for the theoretical test.
+Test Drive is a mobile app developed to a Innovation and New Technologies class in order to apply and improve our knowledge in developing mobile apps. The app aims to help students taking a drivers license to practice for the theoretical test. It utilizes an API to query questions from a MongoDB database.
 
 ## Features
 - Multiplatform
@@ -10,21 +10,11 @@ Test Drive is a mobile app developed to a Innovation and New Technologies class 
 
 ## Technologies
 - [React Native](https://reactnative.dev)
+- [Express](https://expressjs.com)
 - [MongoDB](https://www.mongodb.com/1)
 
 ## Documentation
 The main goal and functionalities of this project are described on the [Wiki](https://github.com/eppica/Test-Drive/wiki).
-
-## Releases
-
-Each release of this project implements a pre-defined [Milestone](https://github.com/eppica/Test-Drive/milestones).
-
-
-| [MILESTONE](https://github.com/eppica/Test-Drive/milestones)             |      TAG     |
-| :------------                                                            | :---------:  |
-| [First Control Point](https://github.com/eppica/Test-Drive/milestone/1)  |     v0.1.0   |
-| [Second Control Point](https://github.com/eppica/Test-Drive/milestone/2) |     v0.2.0   |
-| [Final Version](https://github.com/eppica/Test-Drive/milestone/3)        |     v1.0.0   |
 
 ## Requirements
 
@@ -36,5 +26,33 @@ After that, you'll need to clone this repo:
 ```
 git clone https://github.com/eppica/Test-Drive.git
 ```
+
+## Installing dependencies
+
+### API
+Go to the `api` folder inside the root directory
+```
+cd api
+```
+then run
+```
+npm install
+```
+
+### APP
+Go to the `app` folder inside the root directory
+```
+cd api
+```
+> If you're inside the `api` folder, make sure to go back to the root directory:
+> ```
+> cd ..
+> ```
+
+then run
+```
+npm install
+```
+
 ## :balance_scale: License
 [MIT License](https://github.com/eppica/Test-Drive/blob/main/LICENSE)
