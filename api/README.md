@@ -1,6 +1,8 @@
 # :oncoming_automobile: Test Drive API
 
-This is a Node API that queries from a MongoDB database to get questions for the APP.
+This is a Node API that queries from a MongoDB database to get questions for the APP. It is hosted at [Netlify](https://www.netlify.com) with a free plan.
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/3ea892ee-dc51-4096-a36c-19d158deb6bb/deploy-status)](https://app.netlify.com/sites/test-drive-api/deploys)
 
 ## Requirements
 
@@ -10,13 +12,9 @@ Install the dependencies:
 npm install
 ```
 
-Create `.env` file in the root folder, filling the blank variables or changing the default ones:
+Create `.env` file in the root folder, filling the blank variables:
 
 ```env
-## API
-HOST=localhost
-PORT=3333
-
 ## Database
 DB_URL=
 ```
@@ -29,18 +27,9 @@ Run the following command:
 npm start
 ```
 
-And this will start the server.
+And this will start the server.  
+You can access it at: [http://localhost:9000/.netlify/functions/app](http://localhost:9000/.netlify/functions/app)
 
-## How to Test
-
-### Hot Reload
-
-In order to improve the development of API, you can also run using `nodemon`. First install it locally:
-
-```terminal
-npm install nodemon
-```
-
-### Rest Client
+### How to test
 
 To test the routes of the API, there's `client.http` file with some examples of requests. To make requests on VSCode, install [Rest Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) extension.
