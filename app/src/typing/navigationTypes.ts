@@ -35,7 +35,7 @@ export type HeaderProps = {
 };
 
 export type QuestionProps = {
-  actual: Question;
+  current: Question;
   isReview: boolean;
   functionSetAnswer: Function;
 };

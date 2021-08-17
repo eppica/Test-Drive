@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { Alert, Button } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
-import { Test } from '../../typing/generalTypes';
+import { Alternative, Question, Test, Response } from '../../typing/generalTypes';
 import { TesteProps } from '../../typing/navigationTypes';
 import { Container, Title, Paragraph } from './styles';
 import { URIBase } from '../../utils/variables';
@@ -10,31 +10,73 @@ import { getAsyncValue } from '../../utils/async';
 
 export default function Teste({ navigation, route }: TesteProps) {
   const pressHandler = () => {
-    if (title != 'Carregando...') {
-      navigation.navigate('Questao', teste);
-    }
+    navigation.navigate('Questao', teste);
   };
 
   const [quantity, setQuantity] = React.useState(0);
   const [duration, setDuration] = React.useState(0);
-
-  useEffect(() => {
-    getAsyncValue('MaxTestTime').then((result) => {
-      setDuration(result);
-    });
-    getAsyncValue('QuestionsQuantity').then((result) => {
-      setQuantity(result);
-    });
-  }, []);
-
-  const [title, setTitle] = React.useState('Carregando...');
+  const [questions, setQuestions] = React.useState<Question[]>([]);
 
   const teste: Test = {
-    type: '',
+    type: route.params.route,
     quantity: quantity,
-    questions: [],
+    questions: questions,
     isReview: false,
     duration: duration,
+  };
+
+  useEffect(() => {
+    const init = async () => {
+      let duration = await getAsyncValue('MaxTestTime');
+      setDuration(duration);
+
+      let quantity = await getAsyncValue('QuestionsQuantity');
+      setQuantity(quantity);
+
+      let response = await doRequest(quantity);
+      parseResponse(response.data, quantity, duration);
+    };
+
+    init();
+  }, []);
+
+  const doRequest = (quantity: number) => {
+    console.log(URIBase + route.params.route + '/' + quantity);
+    return axios.get(`${URIBase}${route.params.route}/${quantity}`);
+  };
+
+  const parseResponse = (response: Response[], quantity: number, duration: number) => {
+    teste.type = route.params.route;
+    let questions: Question[] = [];
+    teste.duration = route.params.route == 'simulado' ? 60 : duration;
+
+    for (let i: number = 0; i < response.length; i++) {
+      let toSave: Question;
+      let toSaveAlternatives: Alternative[] = [];
+      let current = response[i];
+      let currentAlternatives = current.alternatives;
+
+      for (let j: number = 0; j < currentAlternatives.length; j++) {
+        let toSaveAlternative: Alternative;
+        toSaveAlternative = {
+          id: currentAlternatives[j].id,
+          text: currentAlternatives[j].text,
+        };
+        toSaveAlternatives.push(toSaveAlternative);
+      }
+      toSave = {
+        index: i + 1,
+        type: current.type,
+        question: current.question,
+        image: current.image,
+        alternatives: toSaveAlternatives,
+        answer: current.answer_id,
+      };
+
+      questions.push(toSave);
+    }
+    setQuestions(questions);
+    setQuantity(questions.length >= quantity ? quantity : questions.length);
   };
 
   const handleError = () => {
@@ -57,18 +99,6 @@ export default function Teste({ navigation, route }: TesteProps) {
       routes: [{ name: 'Conteudo' }],
     });
   };
-
-  axios
-    .get(URIBase + route.params.name.trim)
-    .then(function (response: any) {
-      setTitle('Começar');
-      teste.type = response.data.type;
-      teste.quantity = response.data.quantity;
-      teste.questions = response.data.questions;
-    })
-    .catch(function (error: any) {
-      handleError();
-    });
 
   return (
     <Container>

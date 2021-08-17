@@ -17,8 +17,6 @@ import QuestionTypeTwo from '../../components/QuestionTypeTwo';
 import QuestionTypeThree from '../../components/QuestionTypeThree';
 
 export default function Questao({ navigation, route }: QuestaoProps) {
-  /*=============================================================================================================*/
-
   const test: Test = {
     type: route.params.type,
     quantity: route.params.quantity,
@@ -62,7 +60,7 @@ export default function Questao({ navigation, route }: QuestaoProps) {
   }, []);
 
   const handleNext = () => {
-    props.actual = test.questions[currentQuestion - 1];
+    props.current = test.questions[currentQuestion - 1];
     if (currentQuestion == test.quantity - 1) {
       setButtonNext('Finalizar');
       setCurrentQuestion(currentQuestion + 1);
@@ -76,7 +74,7 @@ export default function Questao({ navigation, route }: QuestaoProps) {
   };
 
   const handlePrevious = () => {
-    props.actual = test.questions[currentQuestion - 1];
+    props.current = test.questions[currentQuestion - 1];
     if (currentQuestion != test.quantity - 1) {
       setButtonNext('Próxima');
     }
@@ -88,7 +86,7 @@ export default function Questao({ navigation, route }: QuestaoProps) {
   };
 
   const props = {
-    actual: test.questions[currentQuestion - 1],
+    current: test.questions[currentQuestion - 1],
     isReview: test.isReview,
     functionSetAnswer: setAnswer,
   };

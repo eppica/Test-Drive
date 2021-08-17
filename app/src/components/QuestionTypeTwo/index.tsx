@@ -5,12 +5,9 @@ import { SvgUri } from 'react-native-svg';
 import { QuestionProps } from '../../typing/navigationTypes';
 import { View } from 'react-native';
 
-export default function QuestionTypeTwo({ actual, isReview, functionSetAnswer }: QuestionProps) {
-  const [answer, setAnswer] = React.useState(actual.userAnswer);
-
+export default function QuestionTypeTwo({ current, isReview, functionSetAnswer }: QuestionProps) {
   const handleAnswer = (answer: number) => {
     if (!isReview) {
-      setAnswer(answer);
       functionSetAnswer(answer);
     }
   };
@@ -18,21 +15,21 @@ export default function QuestionTypeTwo({ actual, isReview, functionSetAnswer }:
   return (
     <Container>
       <Asking>
-        <AskingText>{actual.question}</AskingText>
-        <SvgUri width="180" height="180" uri={actual.image} />
+        <AskingText>{current.question}</AskingText>
+        <SvgUri width="180" height="180" uri={current.image} />
       </Asking>
       <Answers>
-        {actual.alternatives.map((alternative) => (
+        {current.alternatives.map((alternative) => (
           <Answer
-            onPress={() => handleAnswer(alternative.index)}
-            key={alternative.index}
+            onPress={() => handleAnswer(alternative.id)}
+            key={alternative.id}
             style={{
               backgroundColor: isReview
-                ? answer == alternative.index
-                  ? answer == actual.answer
+                ? current.userAnswer == alternative.id
+                  ? current.userAnswer == current.answer
                     ? 'rgba(71,245,71,0.7)'
                     : 'rgba(245,71,71,0.7)'
-                  : alternative.index == actual.answer
+                  : alternative.id == current.answer
                   ? 'rgba(71,245,71,0.7)'
                   : 'rgba(0,0,0,0)'
                 : 'rgba(0,0,0,0)',
@@ -41,11 +38,11 @@ export default function QuestionTypeTwo({ actual, isReview, functionSetAnswer }:
               <RadioButton
                 disabled={isReview}
                 color={'#000'}
-                value={alternative.index.toString()}
-                status={answer == alternative.index ? 'checked' : 'unchecked'}
-                onPress={() => handleAnswer(alternative.index)}
+                value={alternative.id.toString()}
+                status={current.userAnswer == alternative.id ? 'checked' : 'unchecked'}
+                onPress={() => handleAnswer(alternative.id)}
               />
-              <AnswersText>{alternative.content}</AnswersText>
+              <AnswersText>{alternative.text}</AnswersText>
             </View>
           </Answer>
         ))}

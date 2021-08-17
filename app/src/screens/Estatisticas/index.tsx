@@ -102,12 +102,12 @@ export default function Estatisticas() {
       ];
 
       conteudos.forEach((conteudo) => {
-        let actual = validStats.filter((stat) => stat.type == conteudo);
+        let current = validStats.filter((stat) => stat.type == conteudo);
 
         let total = 0;
-        actual.forEach((a) => (total += a.percentage));
+        current.forEach((a) => (total += a.percentage));
 
-        let media = total / actual.length;
+        let media = total / current.length;
 
         media = isNaN(media) ? 0 : media;
 
@@ -115,13 +115,13 @@ export default function Estatisticas() {
           setPontosLegislacao(media);
         } else if (conteudo == 'sinalizacao') {
           setPontosSinalizacao(media);
-        } else if (conteudo == 'direcaodefensiva') {
+        } else if (conteudo == 'direcao-defensiva') {
           setPontosDirecaoDefensiva(media);
-        } else if (conteudo == 'meioambiente') {
+        } else if (conteudo == 'meio-ambiente') {
           setPontosMeioAmbiente(media);
-        } else if (conteudo == 'mecanicabasica') {
+        } else if (conteudo == 'mecanica-basica') {
           setPontosMecanicaBasica(media);
-        } else if (conteudo == 'primeirossocorros') {
+        } else if (conteudo == 'primeiros-socorros') {
           setPontosPrimeirosSocorros(media);
         } else if (conteudo == 'simulado') {
           setPontosSimulado(media);
