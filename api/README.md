@@ -28,7 +28,7 @@ npm start
 ```
 
 And this will start the server.  
-You can access it at: [http://localhost:9000/.netlify/functions/app](http://localhost:9000/.netlify/functions/app)
+You can access it at: [http://localhost:9000/.netlify/functions/api](http://localhost:9000/.netlify/functions/api)
 
 ### How to test
 
