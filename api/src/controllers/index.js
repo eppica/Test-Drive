@@ -1,4 +1,4 @@
-const Question = require("../model/Question");
+const Question = require("../model/question");
 const shuffle = require("shuffle-array");
 
 class QuestionController {
