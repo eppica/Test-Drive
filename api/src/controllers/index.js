@@ -3,11 +3,21 @@ const shuffle = require("shuffle-array");
 
 class QuestionController {
 	async content(req, res) {
-		const data = await Question.find({ content: req.params.content });
+		let data;
+		let dataShuffled;
 
-		const dataShuffled = shuffle.pick(data, {
-			picks: parseInt(req.params.quantity),
-		});
+		if (req.params.content == "simulado") {
+			data = await Question.find({});
+			dataShuffled = shuffle.pick(data, {
+				picks: 30,
+			});
+		} else {
+			data = await Question.find({ content: req.params.content });
+			dataShuffled = shuffle.pick(data, {
+				picks: parseInt(req.params.quantity),
+			});
+		}
+
 		return res.json(dataShuffled);
 	}
 
