@@ -1,10 +1,6 @@
 const mongoose = require("mongoose");
 
 const QuestionSchema = new mongoose.Schema({
-	id: {
-		type: Number,
-		required: true,
-	},
 	type: {
 		type: Number,
 		min: 1,
