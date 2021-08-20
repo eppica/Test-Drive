@@ -49,6 +49,7 @@ export default function ConteudoStackComponent() {
         options={({ navigation }) => {
           return {
             headerTitle: () => <Header navigation={navigation} title={'Resultado'} />,
+            headerLeft: () => null,
           };
         }}
       />

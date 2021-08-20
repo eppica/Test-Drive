@@ -15,8 +15,51 @@ import { QuestaoProps } from '../../typing/navigationTypes';
 import QuestionTypeOne from '../../components/QuestionTypeOne';
 import QuestionTypeTwo from '../../components/QuestionTypeTwo';
 import QuestionTypeThree from '../../components/QuestionTypeThree';
+import { Alert } from 'react-native';
+import { EventArg } from '@react-navigation/native';
 
 export default function Questao({ navigation, route }: QuestaoProps) {
+  useEffect(() => navigation.addListener('beforeRemove', (e) => handleError(e)), [navigation]);
+
+  const handleError = (
+    e: EventArg<
+      'beforeRemove',
+      true,
+      {
+        action: Readonly<{
+          type: string;
+          payload?: object | undefined;
+          source?: string | undefined;
+          target?: string | undefined;
+        }>;
+      }
+    >,
+  ) => {
+    e.preventDefault();
+    Alert.alert(
+      'Você tem certeza?',
+      'Você ainda não finalizou este teste. Caso saia agora, todo o seu progresso será perdido.',
+      [
+        {
+          text: 'Ficar',
+          style: 'cancel',
+          onPress: () => {},
+        },
+        {
+          text: 'Sair',
+          style: 'destructive',
+          onPress: () => {
+            navigation.removeListener('beforeRemove', handleError);
+            navigation.reset({
+              index: 0,
+              routes: [{ name: 'Conteudo' }],
+            });
+          },
+        },
+      ],
+    );
+  };
+
   const test: Test = {
     type: route.params.type,
     quantity: route.params.quantity,
@@ -53,6 +96,7 @@ export default function Questao({ navigation, route }: QuestaoProps) {
       }
       if (timeSeconsRef.current == 0 && !test.isReview) {
         test.remainingTime = 0;
+        navigation.removeListener('beforeRemove', handleError);
         navigation.navigate('Resultado', test);
       }
     }, 1000);
@@ -69,6 +113,7 @@ export default function Questao({ navigation, route }: QuestaoProps) {
       setCurrentQuestion(currentQuestion + 1);
     } else if (currentQuestion == test.quantity) {
       test.remainingTime = timeSeconds;
+      navigation.removeListener('beforeRemove', handleError);
       navigation.navigate('Resultado', test);
     }
   };

@@ -15,8 +15,40 @@ import { ResultadoProps } from '../../typing/navigationTypes';
 import ProgressCircle from 'react-native-progress-circle';
 import { Statistic, Test } from '../../typing/generalTypes';
 import { saveStatistic } from '../../utils/async';
+import { EventArg } from '@react-navigation/native';
 
 export default function Resultado({ navigation, route }: ResultadoProps) {
+  let isGoBackButton: boolean = true;
+
+  useEffect(() => navigation.addListener('beforeRemove', (e) => handleError(e)), [navigation]);
+
+  const handleError = (
+    e: EventArg<
+      'beforeRemove',
+      true,
+      {
+        action: Readonly<{
+          type: string;
+          payload?: object | undefined;
+          source?: string | undefined;
+          target?: string | undefined;
+        }>;
+      }
+    >,
+  ) => {
+    if (isGoBackButton) {
+      e.preventDefault();
+      continueHandler();
+    } else {
+      if (test.isReview) {
+        navigation.removeListener('beforeRemove', handleError);
+        reviewQuestionsHandler();
+      } else {
+        navigation.dispatch(e.data.action);
+      }
+    }
+  };
+
   const test: Test = {
     type: route.params.type,
     quantity: route.params.quantity,
@@ -69,11 +101,13 @@ export default function Resultado({ navigation, route }: ResultadoProps) {
   }, []);
 
   const reviewQuestionsHandler = () => {
+    isGoBackButton = false;
     test.isReview = true;
     navigation.replace('Questao', test);
   };
 
   const continueHandler = () => {
+    isGoBackButton = false;
     navigation.reset({
       index: 0,
       routes: [{ name: 'Conteudo' }],

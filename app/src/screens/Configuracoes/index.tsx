@@ -1,6 +1,7 @@
 import React, { SyntheticEvent, useEffect, useState } from 'react';
 import { Switch } from 'react-native';
-import { ViewStyled, List, HideableList, Title, ConfigText, Input } from './styles';
+import { ViewStyled, List, HideableList, Title, ConfigText } from './styles';
+import NumericInput from 'react-native-numeric-input';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { getAsyncValue, saveAsyncValue } from '../../utils/async';
 
@@ -135,15 +136,23 @@ export default function Configuracoes() {
         </HideableList>
       )}
       <List>
-        <Title>Duração dos Testes (min)</Title>
-        <Input onChangeText={handleMaxTestTime} value={maxTestTime} keyboardType="numeric" />
+        <Title>Duração(min)</Title>
+        <NumericInput
+          minValue={0}
+          maxValue={60}
+          initValue={parseInt(maxTestTime)}
+          value={parseInt(maxTestTime)}
+          onChange={(value) => handleMaxTestTime(value.toString())}
+        />
       </List>
       <List>
         <Title>Quantidade de Questões</Title>
-        <Input
-          onChangeText={handleQuestionsQuantity}
-          value={questionsQuantity}
-          keyboardType="numeric"
+        <NumericInput
+          minValue={0}
+          maxValue={30}
+          initValue={parseInt(questionsQuantity)}
+          value={parseInt(questionsQuantity)}
+          onChange={(value) => handleQuestionsQuantity(value.toString())}
         />
       </List>
     </ViewStyled>

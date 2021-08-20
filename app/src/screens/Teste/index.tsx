@@ -10,9 +10,12 @@ import { getAsyncValue } from '../../utils/async';
 
 export default function Teste({ navigation, route }: TesteProps) {
   const pressHandler = () => {
-    navigation.navigate('Questao', teste);
+    if (buttonText == 'Começar') {
+      navigation.navigate('Questao', teste);
+    }
   };
 
+  const [buttonText, setButtonText] = React.useState('Aguarde...');
   const [quantity, setQuantity] = React.useState(0);
   const [duration, setDuration] = React.useState(0);
   const [questions, setQuestions] = React.useState<Question[]>([]);
@@ -33,8 +36,17 @@ export default function Teste({ navigation, route }: TesteProps) {
       let quantity = await getAsyncValue('QuestionsQuantity');
       setQuantity(quantity);
 
-      let response = await doRequest(quantity);
-      parseResponse(response.data, quantity, duration);
+      doRequest(quantity)
+        .then((response: { data: Response[] }) => {
+          parseResponse(response.data, quantity, duration);
+          setButtonText('Começar');
+        })
+        .catch((e) => {
+          handleError(
+            'Erro 😵',
+            'Ocorreu um erro ao buscar as questões. \nVerifique sua conexão com a internet. ',
+          );
+        });
     };
 
     init();
@@ -76,21 +88,18 @@ export default function Teste({ navigation, route }: TesteProps) {
       questions.push(toSave);
     }
     setQuestions(questions);
+    if (questions.length == 0) handleError('Erro 😞', 'Não foram retornadas questões. ');
     setQuantity(questions.length >= quantity ? quantity : questions.length);
   };
 
-  const handleError = () => {
-    Alert.alert(
-      'Erro',
-      'Ocorreu um erro ao buscar as questões. Verifique sua conexão com a internet.',
-      [
-        {
-          text: 'OK',
-          style: 'destructive',
-          onPress: () => exit(),
-        },
-      ],
-    );
+  const handleError = (errorTitle: string, errorDescription: string) => {
+    Alert.alert(errorTitle, errorDescription, [
+      {
+        text: 'OK',
+        style: 'destructive',
+        onPress: () => exit(),
+      },
+    ]);
   };
 
   const exit = () => {
@@ -112,7 +121,7 @@ export default function Teste({ navigation, route }: TesteProps) {
             ' questões aleatórias sobre o assunto ' +
             route.params.name}
       </Paragraph>
-      <Button title="Começar" onPress={pressHandler} />
+      <Button title={buttonText} onPress={pressHandler} />
     </Container>
   );
 }

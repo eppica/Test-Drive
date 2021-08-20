@@ -12,13 +12,13 @@ export default function Estatisticas() {
   const [datePerDayState, setDatePerDayState] = useState([0]);
   const [datesLabelState, setDatesLabelState] = useState(['']);
 
-  const [pontosLegislacao, setPontosLegislacao] = useState(0);
-  const [pontosSinalizacao, setPontosSinalizacao] = useState(0);
-  const [pontosDirecaoDefensiva, setPontosDirecaoDefensiva] = useState(0);
-  const [pontosMeioAmbiente, setPontosMeioAmbiente] = useState(0);
-  const [pontosMecanicaBasica, setPontosMecanicaBasica] = useState(0);
-  const [pontosPrimeirosSocorros, setPontosPrimeirosSocorros] = useState(0);
-  const [pontosSimulado, setPontosSimulado] = useState(0);
+  const [pontosLegislacao, setPontosLegislacao] = useState('--');
+  const [pontosSinalizacao, setPontosSinalizacao] = useState('--');
+  const [pontosDirecaoDefensiva, setPontosDirecaoDefensiva] = useState('--');
+  const [pontosMeioAmbiente, setPontosMeioAmbiente] = useState('--');
+  const [pontosMecanicaBasica, setPontosMecanicaBasica] = useState('--');
+  const [pontosPrimeirosSocorros, setPontosPrimeirosSocorros] = useState('--');
+  const [pontosSimulado, setPontosSimulado] = useState('--');
 
   useEffect(() => {
     getAsyncValue('Statistics').then((result) => {
@@ -112,19 +112,19 @@ export default function Estatisticas() {
         media = isNaN(media) ? 0 : media;
 
         if (conteudo == 'legislacao') {
-          setPontosLegislacao(media);
+          setPontosLegislacao(media.toFixed(2));
         } else if (conteudo == 'sinalizacao') {
-          setPontosSinalizacao(media);
+          setPontosSinalizacao(media.toFixed(2));
         } else if (conteudo == 'direcao-defensiva') {
-          setPontosDirecaoDefensiva(media);
+          setPontosDirecaoDefensiva(media.toFixed(2));
         } else if (conteudo == 'meio-ambiente') {
-          setPontosMeioAmbiente(media);
+          setPontosMeioAmbiente(media.toFixed(2));
         } else if (conteudo == 'mecanica-basica') {
-          setPontosMecanicaBasica(media);
+          setPontosMecanicaBasica(media.toFixed(2));
         } else if (conteudo == 'primeiros-socorros') {
-          setPontosPrimeirosSocorros(media);
+          setPontosPrimeirosSocorros(media.toFixed(2));
         } else if (conteudo == 'simulado') {
-          setPontosSimulado(media);
+          setPontosSimulado(media.toFixed(2));
         }
       });
     });

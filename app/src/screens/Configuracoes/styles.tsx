@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { View, Text, TextInput } from 'react-native';
+import { View, Text } from 'react-native';
 
 export const ViewStyled = styled(View)`
   flex: 1;
@@ -12,6 +12,7 @@ export const List = styled(View)`
   padding: 20px;
   background-color: #fff;
   justify-content: space-between;
+  align-items: center;
 `;
 
 export const HideableList = styled(View)`
@@ -23,15 +24,9 @@ export const HideableList = styled(View)`
 
 export const Title = styled(Text)`
   font-size: 18px;
-  margin-left: 20px;
 `;
 
 export const ConfigText = styled(Text)`
-  font-size: 16px;
-  margin-right: 15px;
-`;
-
-export const Input = styled(TextInput)`
   font-size: 16px;
   margin-right: 15px;
 `;
