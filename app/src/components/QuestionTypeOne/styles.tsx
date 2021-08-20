@@ -20,10 +20,11 @@ export const AskingText = styled(Text)`
 `;
 
 export const Answers = styled(View)`
-  width: 100%;
+  width: 90%;
   flex-direction: column;
   align-items: flex-start;
   padding: 20px;
+  padding-left: 0px;
 `;
 
 export const Answer = styled(TouchableWithoutFeedback)`

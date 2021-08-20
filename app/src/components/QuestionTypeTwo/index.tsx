@@ -34,16 +34,14 @@ export default function QuestionTypeTwo({ current, isReview, functionSetAnswer }
                   : 'rgba(0,0,0,0)'
                 : 'rgba(0,0,0,0)',
             }}>
-            <View style={{ width: '100%', flexDirection: 'row' }}>
-              <RadioButton
-                disabled={isReview}
-                color={'#000'}
-                value={alternative.id.toString()}
-                status={current.userAnswer == alternative.id ? 'checked' : 'unchecked'}
-                onPress={() => handleAnswer(alternative.id)}
-              />
-              <AnswersText>{alternative.text}</AnswersText>
-            </View>
+            <RadioButton
+              disabled={isReview}
+              color={'#000'}
+              value={alternative.id.toString()}
+              status={current.userAnswer == alternative.id ? 'checked' : 'unchecked'}
+              onPress={() => handleAnswer(alternative.id)}
+            />
+            <AnswersText>{alternative.text}</AnswersText>
           </Answer>
         ))}
       </Answers>

@@ -60,7 +60,7 @@ export default function Teste({ navigation, route }: TesteProps) {
   const parseResponse = (response: Response[], quantity: number, duration: number) => {
     teste.type = route.params.route;
     let questions: Question[] = [];
-    teste.duration = route.params.route == 'simulado' ? 60 : duration;
+    setDuration(route.params.route == 'simulado' ? 60 : duration);
 
     for (let i: number = 0; i < response.length; i++) {
       let toSave: Question;
@@ -89,7 +89,13 @@ export default function Teste({ navigation, route }: TesteProps) {
     }
     setQuestions(questions);
     if (questions.length == 0) handleError('Erro 😞', 'Não foram retornadas questões. ');
-    setQuantity(questions.length >= quantity ? quantity : questions.length);
+    setQuantity(
+      questions.length >= quantity
+        ? route.params.route == 'simulado'
+          ? 30
+          : quantity
+        : questions.length,
+    );
   };
 
   const handleError = (errorTitle: string, errorDescription: string) => {
